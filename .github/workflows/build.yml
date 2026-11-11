@@ -60,6 +60,12 @@ jobs:
           # 若使用 TrollStore（可绕过签名校验），可保留 ldid 注入以启用 Widget 共享。
           # 用 ad-hoc 签名（不含任何自定义权限）保证包结构合法；
           # 侧载工具安装时会用自己的证书和描述文件重签。
+          # 先签嵌套的 Widget 扩展，再签外层 App（--deep 不会自动处理未签名的 appex）
+          APPEX="build/Payload/YumikoToysRR.app/PlugIns/WheaterStatusExtension.appex"
+          if [ -d "$APPEX" ]; then
+            codesign --force --sign - "$APPEX"
+            codesign -dv "$APPEX" 2>&1 | grep -q "Signature=adhoc" || { echo "❌ appex 签名失败"; exit 1; }
+          fi
           codesign --force --deep --sign - build/Payload/YumikoToysRR.app
           echo "--- 校验：权限应为空 ---"
           codesign -d --entitlements :- build/Payload/YumikoToysRR.app/YumikoToysRR 2>&1 | head -5 || true
