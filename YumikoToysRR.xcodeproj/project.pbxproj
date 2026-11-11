@@ -1,0 +1,662 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B2BB25428BFB36300A8B2A3 /* wheaterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BB25328BFB36300A8B2A3 /* wheaterApp.swift */; };
+		2B2BB25628BFB36300A8B2A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BB25528BFB36300A8B2A3 /* ContentView.swift */; };
+		AA7000012D20000000EED680 /* NIOCredentialInboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7100012D20000000EED680 /* NIO/NIOCredentialInboxView.swift */; };
+		AA7000002D21000000EED680 /* NIOConfigBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7100002D21000000EED680 /* NIO/NIOConfigBackupView.swift */; };
+		AA7000022D20000000EED680 /* NIO_Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA7100022D20000000EED680 /* NIO_Secrets.plist */; };
+		2B2BB25828BFB36600A8B2A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B2BB25728BFB36600A8B2A3 /* Assets.xcassets */; };
+		2B2BB25B28BFB36600A8B2A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B2BB25A28BFB36600A8B2A3 /* Preview Assets.xcassets */; };
+		2B902BED28D91FFF003FB942 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B902BEC28D91FFF003FB942 /* WidgetKit.framework */; };
+		2B902BEF28D91FFF003FB942 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B902BEE28D91FFF003FB942 /* SwiftUI.framework */; };
+		2B902BF228D91FFF003FB942 /* WheaterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B902BF128D91FFF003FB942 /* WheaterStatus.swift */; };
+		2B902BF528D92003003FB942 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B902BF428D92003003FB942 /* Assets.xcassets */; };
+		2B902BF728D92003003FB942 /* WheaterStatus.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 2B902BF328D91FFF003FB942 /* WheaterStatus.intentdefinition */; };
+		2B902BF828D92003003FB942 /* WheaterStatus.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 2B902BF328D91FFF003FB942 /* WheaterStatus.intentdefinition */; };
+		2B902BFB28D92003003FB942 /* WheaterStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B902BEA28D91FFF003FB942 /* WheaterStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2B902C0128D9202B003FB942 /* WheaterAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B902C0028D9202B003FB942 /* WheaterAttributes.swift */; };
+		AA5600052D0E5A0000EED680 /* IslandControlWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5600032D0E5A0000EED680 /* IslandControlWidget.swift */; };
+		AA5600062D0E5A0000EED680 /* NIOVehicleSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5600072D0E5A0000EED680 /* NIOVehicleSnapshot.swift */; };
+		AA5600082D0E5A0000EED680 /* NIOVehicleSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5600072D0E5A0000EED680 /* NIOVehicleSnapshot.swift */; };
+		AA5600092D0E5A0000EED680 /* NIOHomeWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA56000A2D0E5A0000EED680 /* NIOHomeWidgets.swift */; };
+		AA5600022D0E5A0000EED680 /* NIOCarPlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5600042D0E5A0000EED680 /* NIOCarPlayScene.swift */; };
+		2B902C0228D932EA003FB942 /* WheaterAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B902C0028D9202B003FB942 /* WheaterAttributes.swift */; };
+		AA2000012C3E846A00EED680 /* NIO/NIOModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000012C3E846500EED680 /* NIO/NIOModels.swift */; };
+		AA2000022C3E846A00EED680 /* NIO/NIOVehicleLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000022C3E846500EED680 /* NIO/NIOVehicleLib.swift */; };
+		AA2000032C3E846A00EED680 /* NIO/NIOOrderLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000032C3E846500EED680 /* NIO/NIOOrderLib.swift */; };
+		AA2000042C3E846A00EED680 /* NIO/NIOCheckinLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000042C3E846500EED680 /* NIO/NIOCheckinLib.swift */; };
+		AA2000052C3E846A00EED680 /* NIOService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000052C3E846500EED680 /* NIOService.swift */; };
+		AA2000062C3E846A00EED680 /* NIO/IOSNIOConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000062C3E846500EED680 /* NIO/IOSNIOConfigView.swift */; };
+		AA2000072C3E846A00EED680 /* NIO/IOSNIODashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000072C3E846500EED680 /* NIO/IOSNIODashboardView.swift */; };
+		AA2000082C3E846A00EED680 /* NIO/IOSAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000082C3E846500EED680 /* NIO/IOSAboutView.swift */; };
+		AA2000092C3E846A00EED680 /* NIO/NIOPixelLaunchSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000092C3E846500EED680 /* NIO/NIOPixelLaunchSplashView.swift */; };
+		AA2000142C3E846A00EED680 /* NIO/NIOLaunchStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000142C3E846500EED680 /* NIO/NIOLaunchStyle.swift */; };
+		AA2000152C3E846A00EED680 /* NIO/NIOEnergyBootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000152C3E846500EED680 /* NIO/NIOEnergyBootView.swift */; };
+		AA2000162C3E846A00EED680 /* NIO/NIOMinimalBootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000162C3E846500EED680 /* NIO/NIOMinimalBootView.swift */; };
+		AA2000172C3E846A00EED680 /* NIO/NIODashboardCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000172C3E846500EED680 /* NIO/NIODashboardCards.swift */; };
+		AA2000102C3E846A00EED680 /* Services/VPN/NIOVPNCertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000102C3E846500EED680 /* Services/VPN/NIOVPNCertManager.swift */; };
+		AA2000112C3E846A00EED680 /* Services/VPN/NIOMitmEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000112C3E846500EED680 /* Services/VPN/NIOMitmEngine.swift */; };
+		AA2000122C3E846A00EED680 /* Services/VPN/NIOVPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000122C3E846500EED680 /* Services/VPN/NIOVPNManager.swift */; };
+		AA2000132C3E846A00EED680 /* Services/VPN/NIOCredentialReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000132C3E846500EED680 /* Services/VPN/NIOCredentialReceiver.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2B902BF928D92003003FB942 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B2BB24828BFB36300A8B2A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B902BE928D91FFF003FB942;
+			remoteInfo = WheaterStatusExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2B902BFC28D92004003FB942 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				2B902BFB28D92003003FB942 /* WheaterStatusExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2B2BB25028BFB36300A8B2A3 /* YumikoToysRR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YumikoToysRR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B2BB25328BFB36300A8B2A3 /* wheaterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wheaterApp.swift; sourceTree = "<group>"; };
+		2B2BB25528BFB36300A8B2A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2B2BB25728BFB36600A8B2A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B2BB25A28BFB36600A8B2A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2B7631FB28C412DA00AE686C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA7100012D20000000EED680 /* NIO/NIOCredentialInboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOCredentialInboxView.swift; sourceTree = "<group>"; };
+		AA7100002D21000000EED680 /* NIO/NIOConfigBackupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOConfigBackupView.swift; sourceTree = "<group>"; };
+		AA7100022D20000000EED680 /* NIO_Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NIO_Secrets.plist; sourceTree = "<group>"; };
+		2B902BEA28D91FFF003FB942 /* WheaterStatusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WheaterStatusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B902BEC28D91FFF003FB942 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		2B902BEE28D91FFF003FB942 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		2B902BF128D91FFF003FB942 /* WheaterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheaterStatus.swift; sourceTree = "<group>"; };
+		2B902BF328D91FFF003FB942 /* WheaterStatus.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WheaterStatus.intentdefinition; sourceTree = "<group>"; };
+		2B902BF428D92003003FB942 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B902BF628D92003003FB942 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B902C0028D9202B003FB942 /* WheaterAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheaterAttributes.swift; sourceTree = "<group>"; };
+		AA5600032D0E5A0000EED680 /* IslandControlWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandControlWidget.swift; sourceTree = "<group>"; };
+		AA5600042D0E5A0000EED680 /* NIOCarPlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOCarPlayScene.swift; sourceTree = "<group>"; };
+		AA5600072D0E5A0000EED680 /* NIOVehicleSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOVehicleSnapshot.swift; sourceTree = "<group>"; };
+		AA56000A2D0E5A0000EED680 /* NIOHomeWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOHomeWidgets.swift; sourceTree = "<group>"; };
+		AA1000012C3E846500EED680 /* NIO/NIOModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOModels.swift; sourceTree = "<group>"; };
+		AA1000022C3E846500EED680 /* NIO/NIOVehicleLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOVehicleLib.swift; sourceTree = "<group>"; };
+		AA1000032C3E846500EED680 /* NIO/NIOOrderLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOOrderLib.swift; sourceTree = "<group>"; };
+		AA1000042C3E846500EED680 /* NIO/NIOCheckinLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOCheckinLib.swift; sourceTree = "<group>"; };
+		AA1000052C3E846500EED680 /* NIOService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOService.swift; sourceTree = "<group>"; };
+		AA1000062C3E846500EED680 /* NIO/IOSNIOConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/IOSNIOConfigView.swift; sourceTree = "<group>"; };
+		AA1000072C3E846500EED680 /* NIO/IOSNIODashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/IOSNIODashboardView.swift; sourceTree = "<group>"; };
+		AA1000082C3E846500EED680 /* NIO/IOSAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/IOSAboutView.swift; sourceTree = "<group>"; };
+		AA1000092C3E846500EED680 /* NIO/NIOPixelLaunchSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOPixelLaunchSplashView.swift; sourceTree = "<group>"; };
+		AA1000142C3E846500EED680 /* NIO/NIOLaunchStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOLaunchStyle.swift; sourceTree = "<group>"; };
+		AA1000152C3E846500EED680 /* NIO/NIOEnergyBootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOEnergyBootView.swift; sourceTree = "<group>"; };
+		AA1000162C3E846500EED680 /* NIO/NIOMinimalBootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIOMinimalBootView.swift; sourceTree = "<group>"; };
+		AA1000172C3E846500EED680 /* NIO/NIODashboardCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIO/NIODashboardCards.swift; sourceTree = "<group>"; };
+		AA1000102C3E846500EED680 /* Services/VPN/NIOVPNCertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/VPN/NIOVPNCertManager.swift; sourceTree = "<group>"; };
+		AA1000112C3E846500EED680 /* Services/VPN/NIOMitmEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/VPN/NIOMitmEngine.swift; sourceTree = "<group>"; };
+		AA1000122C3E846500EED680 /* Services/VPN/NIOVPNManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/VPN/NIOVPNManager.swift; sourceTree = "<group>"; };
+		AA1000132C3E846500EED680 /* Services/VPN/NIOCredentialReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/VPN/NIOCredentialReceiver.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B2BB24D28BFB36300A8B2A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		2B902BE728D91FFF003FB942 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				2B902BEF28D91FFF003FB942 /* SwiftUI.framework in Frameworks */,
+				2B902BED28D91FFF003FB942 /* WidgetKit.framework in Frameworks */,
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B2BB24728BFB36300A8B2A3 = {
+			isa = PBXGroup;
+			children = (
+				2B2BB25228BFB36300A8B2A3 /* wheater */,
+				2B902BF028D91FFF003FB942 /* WheaterStatus */,
+				2B902BEB28D91FFF003FB942 /* Frameworks */,
+				2B2BB25128BFB36300A8B2A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2B2BB25128BFB36300A8B2A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B2BB25028BFB36300A8B2A3 /* YumikoToysRR.app */,
+				2B902BEA28D91FFF003FB942 /* WheaterStatusExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B2BB25228BFB36300A8B2A3 /* wheater */ = {
+			isa = PBXGroup;
+			children = (
+				2B2BB27D28C0522400A8B2A3 /* Model */,
+				2B76323F28C447A400AE686C /* Views */,
+				2BE35B7D28C1978600133DFB /* ViewModel */,
+				AA1000102C3E846500EED680 /* Services/VPN/NIOVPNCertManager.swift */,
+				AA1000112C3E846500EED680 /* Services/VPN/NIOMitmEngine.swift */,
+				AA1000122C3E846500EED680 /* Services/VPN/NIOVPNManager.swift */,
+				AA1000132C3E846500EED680 /* Services/VPN/NIOCredentialReceiver.swift */,
+				2B2BB25728BFB36600A8B2A3 /* Assets.xcassets */,
+				2B2BB25328BFB36300A8B2A3 /* wheaterApp.swift */,
+				2B2BB25928BFB36600A8B2A3 /* Preview Content */,
+				2B7631FB28C412DA00AE686C /* Info.plist */,
+				AA7100022D20000000EED680 /* NIO_Secrets.plist */,
+			);
+			path = wheater;
+			sourceTree = "<group>";
+		};
+		2B2BB25928BFB36600A8B2A3 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2B2BB25A28BFB36600A8B2A3 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2B2BB27D28C0522400A8B2A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA1000012C3E846500EED680 /* NIO/NIOModels.swift */,
+				AA1000022C3E846500EED680 /* NIO/NIOVehicleLib.swift */,
+				AA1000032C3E846500EED680 /* NIO/NIOOrderLib.swift */,
+				AA1000042C3E846500EED680 /* NIO/NIOCheckinLib.swift */,
+				2B902C0028D9202B003FB942 /* WheaterAttributes.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2B76323F28C447A400AE686C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2B2BB25528BFB36300A8B2A3 /* ContentView.swift */,
+				AA1000062C3E846500EED680 /* NIO/IOSNIOConfigView.swift */,
+				AA1000072C3E846500EED680 /* NIO/IOSNIODashboardView.swift */,
+				AA1000082C3E846500EED680 /* NIO/IOSAboutView.swift */,
+				AA1000092C3E846500EED680 /* NIO/NIOPixelLaunchSplashView.swift */,
+				AA1000142C3E846500EED680 /* NIO/NIOLaunchStyle.swift */,
+				AA1000152C3E846500EED680 /* NIO/NIOEnergyBootView.swift */,
+				AA1000162C3E846500EED680 /* NIO/NIOMinimalBootView.swift */,
+				AA1000172C3E846500EED680 /* NIO/NIODashboardCards.swift */,
+				AA5600042D0E5A0000EED680 /* NIO/NIOCarPlayScene.swift */,
+				AA7100012D20000000EED680 /* NIO/NIOCredentialInboxView.swift */,
+				AA7100002D21000000EED680 /* NIO/NIOConfigBackupView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2B902BEB28D91FFF003FB942 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B902BEC28D91FFF003FB942 /* WidgetKit.framework */,
+				2B902BEE28D91FFF003FB942 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B902BF028D91FFF003FB942 /* WheaterStatus */ = {
+			isa = PBXGroup;
+			children = (
+				2B902BF128D91FFF003FB942 /* WheaterStatus.swift */,
+				AA5600032D0E5A0000EED680 /* IslandControlWidget.swift */,
+				AA5600072D0E5A0000EED680 /* NIOVehicleSnapshot.swift */,
+				AA56000A2D0E5A0000EED680 /* NIOHomeWidgets.swift */,
+				2B902BF328D91FFF003FB942 /* WheaterStatus.intentdefinition */,
+				2B902BF428D92003003FB942 /* Assets.xcassets */,
+				2B902BF628D92003003FB942 /* Info.plist */,
+			);
+			path = WheaterStatus;
+			sourceTree = "<group>";
+		};
+		2BE35B7D28C1978600133DFB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AA1000052C3E846500EED680 /* NIOService.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B2BB24F28BFB36300A8B2A3 /* YumikoToysRR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B2BB27428BFB36600A8B2A3 /* Build configuration list for PBXNativeTarget "YumikoToysRR" */;
+			buildPhases = (
+				2B2BB24C28BFB36300A8B2A3 /* Sources */,
+				2B2BB24D28BFB36300A8B2A3 /* Frameworks */,
+				2B2BB24E28BFB36300A8B2A3 /* Resources */,
+				2B902BFC28D92004003FB942 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B902BFA28D92003003FB942 /* PBXTargetDependency */,
+			);
+			name = YumikoToysRR;
+			productName = wheater;
+			productReference = 2B2BB25028BFB36300A8B2A3 /* YumikoToysRR.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2B902BE928D91FFF003FB942 /* WheaterStatusExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B902BFF28D92004003FB942 /* Build configuration list for PBXNativeTarget "WheaterStatusExtension" */;
+			buildPhases = (
+				2B902BE628D91FFF003FB942 /* Sources */,
+				2B902BE728D91FFF003FB942 /* Frameworks */,
+				2B902BE828D91FFF003FB942 /* Resources */,
+			);
+			buildRules = (
+			);
+			name = WheaterStatusExtension;
+			productName = WheaterStatusExtension;
+			productReference = 2B902BEA28D91FFF003FB942 /* WheaterStatusExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B2BB24828BFB36300A8B2A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					2B2BB24F28BFB36300A8B2A3 = {
+						CreatedOnToolsVersion = 13.4;
+					};
+					2B902BE928D91FFF003FB942 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = 2B2BB24B28BFB36300A8B2A3 /* Build configuration list for PBXProject "YumikoToysRR" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B2BB24728BFB36300A8B2A3;
+			preferredProjectObjectVersion = 90;
+			productRefGroup = 2B2BB25128BFB36300A8B2A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B2BB24F28BFB36300A8B2A3 /* YumikoToysRR */,
+				2B902BE928D91FFF003FB942 /* WheaterStatusExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B2BB24E28BFB36300A8B2A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				2B2BB25B28BFB36600A8B2A3 /* Preview Assets.xcassets in Resources */,
+				2B2BB25828BFB36600A8B2A3 /* Assets.xcassets in Resources */,
+				AA7000022D20000000EED680 /* NIO_Secrets.plist in Resources */,
+			);
+		};
+		2B902BE828D91FFF003FB942 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				2B902BF528D92003003FB942 /* Assets.xcassets in Resources */,
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B2BB24C28BFB36300A8B2A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				2B902BF828D92003003FB942 /* WheaterStatus.intentdefinition in Sources */,
+				2B902C0128D9202B003FB942 /* WheaterAttributes.swift in Sources */,
+				2B2BB25628BFB36300A8B2A3 /* ContentView.swift in Sources */,
+				AA2000012C3E846A00EED680 /* NIO/NIOModels.swift in Sources */,
+				AA2000022C3E846A00EED680 /* NIO/NIOVehicleLib.swift in Sources */,
+				AA2000032C3E846A00EED680 /* NIO/NIOOrderLib.swift in Sources */,
+				AA2000042C3E846A00EED680 /* NIO/NIOCheckinLib.swift in Sources */,
+				AA2000052C3E846A00EED680 /* NIOService.swift in Sources */,
+				AA2000062C3E846A00EED680 /* NIO/IOSNIOConfigView.swift in Sources */,
+				AA2000072C3E846A00EED680 /* NIO/IOSNIODashboardView.swift in Sources */,
+				AA2000082C3E846A00EED680 /* NIO/IOSAboutView.swift in Sources */,
+				AA2000092C3E846A00EED680 /* NIO/NIOPixelLaunchSplashView.swift in Sources */,
+				AA2000142C3E846A00EED680 /* NIO/NIOLaunchStyle.swift in Sources */,
+				AA2000152C3E846A00EED680 /* NIO/NIOEnergyBootView.swift in Sources */,
+				AA2000162C3E846A00EED680 /* NIO/NIOMinimalBootView.swift in Sources */,
+				AA2000172C3E846A00EED680 /* NIO/NIODashboardCards.swift in Sources */,
+				AA2000102C3E846A00EED680 /* Services/VPN/NIOVPNCertManager.swift in Sources */,
+				AA2000112C3E846A00EED680 /* Services/VPN/NIOMitmEngine.swift in Sources */,
+				AA2000122C3E846A00EED680 /* Services/VPN/NIOVPNManager.swift in Sources */,
+				AA2000132C3E846A00EED680 /* Services/VPN/NIOCredentialReceiver.swift in Sources */,
+				2B2BB25428BFB36300A8B2A3 /* wheaterApp.swift in Sources */,
+				AA5600012D0E5A0000EED680 /* IslandControlWidget.swift in Sources */,
+				AA5600082D0E5A0000EED680 /* NIOVehicleSnapshot.swift in Sources */,
+				AA5600022D0E5A0000EED680 /* NIOCarPlayScene.swift in Sources */,
+				AA7000012D20000000EED680 /* NIOCredentialInboxView.swift in Sources */,
+				AA7000002D21000000EED680 /* NIOConfigBackupView.swift in Sources */,
+			);
+		};
+		2B902BE628D91FFF003FB942 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				2B902BF228D91FFF003FB942 /* WheaterStatus.swift in Sources */,
+				AA5600052D0E5A0000EED680 /* IslandControlWidget.swift in Sources */,
+				AA5600062D0E5A0000EED680 /* NIOVehicleSnapshot.swift in Sources */,
+				AA5600092D0E5A0000EED680 /* NIOHomeWidgets.swift in Sources */,
+				2B902BF728D92003003FB942 /* WheaterStatus.intentdefinition in Sources */,
+				2B902C0228D932EA003FB942 /* WheaterAttributes.swift in Sources */,
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2B902BFA28D92003003FB942 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B902BE928D91FFF003FB942 /* WheaterStatusExtension */;
+			targetProxy = 2B902BF928D92003003FB942 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2B2BB27228BFB36600A8B2A3 /* Debug configuration for PBXProject "YumikoToysRR" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2B2BB27328BFB36600A8B2A3 /* Release configuration for PBXProject "YumikoToysRR" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B2BB27528BFB36600A8B2A3 /* Debug configuration for PBXNativeTarget "YumikoToysRR" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2809;
+				DEVELOPMENT_ASSET_PATHS = "\"wheater/Preview Content\"";
+				DEVELOPMENT_TEAM = E3AH4URHDH;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = wheater/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "在后台保持车况刷新连接（保活用）。App 不使用、不存储你的位置信息。";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "在后台保持车况刷新连接（保活用）。App 不使用、不存储你的位置信息。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "在后台保持车况刷新连接（保活用）。App 不使用、不存储你的位置信息。";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 5.2.0;
+				CODE_SIGN_ENTITLEMENTS = wheater/wheater.entitlements;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YumikoToysRR.wheater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2B2BB27628BFB36600A8B2A3 /* Release configuration for PBXNativeTarget "YumikoToysRR" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2809;
+				DEVELOPMENT_ASSET_PATHS = "\"wheater/Preview Content\"";
+				DEVELOPMENT_TEAM = E3AH4URHDH;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = wheater/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "在后台保持车况刷新连接（保活用）。App 不使用、不存储你的位置信息。";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "在后台保持车况刷新连接（保活用）。App 不使用、不存储你的位置信息。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "在后台保持车况刷新连接（保活用）。App 不使用、不存储你的位置信息。";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 5.2.0;
+				CODE_SIGN_ENTITLEMENTS = wheater/wheater.entitlements;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YumikoToysRR.wheater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2B902BFD28D92004003FB942 /* Debug configuration for PBXNativeTarget "WheaterStatusExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2809;
+				DEVELOPMENT_TEAM = E3AH4URHDH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WheaterStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WheaterStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 5.2.0;
+				CODE_SIGN_ENTITLEMENTS = WheaterStatus/Extension.entitlements;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YumikoToysRR.wheater.WheaterStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG WHEATER_STATUS_EXTENSION";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2B902BFE28D92004003FB942 /* Release configuration for PBXNativeTarget "WheaterStatusExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2809;
+				DEVELOPMENT_TEAM = E3AH4URHDH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WheaterStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WheaterStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 5.2.0;
+				CODE_SIGN_ENTITLEMENTS = WheaterStatus/Extension.entitlements;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YumikoToysRR.wheater.WheaterStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = WHEATER_STATUS_EXTENSION;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B2BB24B28BFB36300A8B2A3 /* Build configuration list for PBXProject "YumikoToysRR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B2BB27228BFB36600A8B2A3 /* Debug configuration for PBXProject "YumikoToysRR" */,
+				2B2BB27328BFB36600A8B2A3 /* Release configuration for PBXProject "YumikoToysRR" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		2B2BB27428BFB36600A8B2A3 /* Build configuration list for PBXNativeTarget "YumikoToysRR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B2BB27528BFB36600A8B2A3 /* Debug configuration for PBXNativeTarget "YumikoToysRR" */,
+				2B2BB27628BFB36600A8B2A3 /* Release configuration for PBXNativeTarget "YumikoToysRR" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		2B902BFF28D92004003FB942 /* Build configuration list for PBXNativeTarget "WheaterStatusExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B902BFD28D92004003FB942 /* Debug configuration for PBXNativeTarget "WheaterStatusExtension" */,
+				2B902BFE28D92004003FB942 /* Release configuration for PBXNativeTarget "WheaterStatusExtension" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2B2BB24828BFB36300A8B2A3 /* Project object */;
+}

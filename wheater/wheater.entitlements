@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- 仅 App Group：免费开发者账号可自动签名。
+	     CarPlay (com.apple.developer.carplay-maps) 需付费账号授权，免费账号签名会报
+	     "Entitlement not found and could not be included in profile"。
+	     TrollStore/CI 包由 .github/workflows/build.yml 在 ldid 时注入完整权限（含 CarPlay）。 -->
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.com.YumikoToysRR.wheater</string>
+	</array>
+</dict>
+</plist>

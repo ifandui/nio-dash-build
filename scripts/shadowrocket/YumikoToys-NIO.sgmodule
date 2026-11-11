@@ -1,0 +1,18 @@
+#!name=🐰 YumikoToys NIO-Dash 凭证直推
+#!desc=自动拦截蔚来 App 请求 v3：提取 Token / 用户级Token（主 App 会话）/ VehicleID / User-Guid / app_ver 指纹直推 YumikoToys App（127.0.0.1:8997）；在官方 App 点车控按钮时自动捕获指令原文（端点+body）供逆向对照。同凭证重复推送会被 App 静默忽略。
+#!author=YumikoToys
+#!version=v3.1.0 (2026-11-02 扫码授权链路捕获版)
+#!date=2026-11-02 20:00:00
+#!homepage=https://github.com/kissggj123/NIO-Dash-iOS
+#!icon=https://raw.githubusercontent.com/kissggj123/NIO-Dash-iOS/main/wheater/Assets.xcassets/AppIcon.appiconset/icon_60%402x.png
+#!category=车联网
+
+[Script]
+# 蔚来 API 凭证嗅探 & 直推 YumikoToys App（requires-body=true 捕获车控 POST 原文）
+NIO-Credential-Push = type=http-request, pattern=^https?://(.*\.)?nio\.com, requires-body=true, max-size=0, script-path=https://raw.githubusercontent.com/kissggj123/NIO-Dash-iOS/main/scripts/shadowrocket/nio_credential_push.js, script-update-interval=86400
+
+# 车机扫码授权链路捕获（poseidon：工程模式/扫码授权的服务端权限判定，抓响应原文）
+NIO-Poseidon-Capture = type=http-response, pattern=^https?://(.*\.)?nio\.com.*poseidon, requires-body=true, max-size=0, script-path=https://raw.githubusercontent.com/kissggj123/NIO-Dash-iOS/main/scripts/shadowrocket/nio_poseidon_capture.js, script-update-interval=86400
+
+[MITM]
+hostname = *.nio.com, nio.com, gateway-front-external.nio.com, icar.nio.com, app.nio.com, account.nio.com, tsp.nio.com

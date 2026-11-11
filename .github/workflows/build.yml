@@ -1,0 +1,119 @@
+name: Build & Package iOS App (IPA)
+
+on:
+  push:
+    branches: [ "main" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-ipa:
+    name: Build & Package Unsigned IPA
+    runs-on: macos-15
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode 26 (iOS 26 SDK)
+        run: |
+          set -euo pipefail
+          XC=""
+          for v in 26.3 26.2 26.1.1 26.1 26.0.1 26.0; do
+            if [ -d "/Applications/Xcode_$v.app" ]; then XC="/Applications/Xcode_$v.app"; break; fi
+          done
+          if [ -z "$XC" ]; then
+            echo "❌ 镜像里没有 Xcode 26"; ls /Applications | grep -i xcode || true; exit 1
+          fi
+          echo "使用 $XC"
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+          xcodebuild -showsdks | grep -i "iphoneos" || true
+
+      - name: Build & Archive iOS App
+        run: |
+          xcodebuild \
+            -project YumikoToysRR.xcodeproj \
+            -scheme YumikoToysRR \
+            -destination 'generic/platform=iOS' \
+            -configuration Release \
+            -archivePath build/YumikoToysRR.xcarchive \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            archive
+
+      - name: Package Unsigned IPA (with Live Activity Appex)
+        run: |
+          mkdir -p build/Payload
+          cp -r build/YumikoToysRR.xcarchive/Products/Applications/YumikoToysRR.app build/Payload/
+          # 为 TrollStore 安装嵌入权限（ldid 重签名，CoreTrust 旁路下任意权限有效）
+          brew install ldid
+          # 主 App：CarPlay + App Group（桌面 Widget 快照共享）
+          ldid -Swheater/wheater.entitlements build/Payload/YumikoToysRR.app/YumikoToysRR
+          # Widget 扩展：App Group（读取车况快照）
+          APPEX_BIN="build/Payload/YumikoToysRR.app/PlugIns/WheaterStatusExtension.appex/WheaterStatusExtension"
+          if [ -f "$APPEX_BIN" ]; then ldid -SWheaterStatus/Extension.entitlements "$APPEX_BIN"; fi
+          cd build && zip -qry YumikoToysRR-unsigned.ipa Payload
+          ls -lh YumikoToysRR-unsigned.ipa
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: YumikoToysRR-iOS-IPA
+          path: build/YumikoToysRR-unsigned.ipa
+          retention-days: 14
+
+      - name: Create Release and Upload IPA
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: 🐰 YumikoToysRR for NIO (iOS) ${{ github.ref_name }}
+          files: build/YumikoToysRR-unsigned.ipa
+          generate_release_notes: false
+          body: |
+            ## 🌸 YumikoToysRR for NIO (iOS) ${{ github.ref_name }} 更新
+
+            ### �️ iPad / Duo 折叠屏全面适配
+            - **特斯拉式侧边栏**：8 大功能分类，侧栏底部常驻连接状态与设置入口；
+            - **形态自适应**：折叠态单列 ↔ 展开态 ≥780pt 自动双列卡片流（看板与设置页）；
+            - **大屏全屏呈现**：设置 / 关于 / 更新日志 / 诊断日志改为全屏页；自定义主题色折叠按钮与淡色标题条。
+
+            ### 🪞 灵动岛全机型适配
+            - 紧凑区重构：左侧纯图标（充电⚡ / 低电橙 / 主题色电量）+ 右侧 SOC 百分比，不再被挖孔裁切；
+            - 续航与充满倒计时保留在长按展开态。
+
+            ### 🌸 三风格启动动画
+            - **能量充能**（默认）：电池环 0→100% 充能 + 电弧凝聚 Logo + 星尘 / 轨道电子 / 冲击波 / 光泽扫过；
+            - **像素重制** 与 **极简快启**（≤1.1s）；设置页可切换风格 / 节奏 / 每日一次 / 触感，支持一键预览。
+
+            ### � 看板六张新卡（v5.0.0）
+            - 特殊模式（守卫/宠物/露营/不下电/V2L）、智能外设、能耗评分（CLTC 达成率环形评级）、历史趋势（Swift Charts）、维保追踪、今日行驶轨迹（MapPolyline）。
+
+            ### � 主页车型与图片
+            - 主页标题跟随设置车型；车图三模式：内置 ET5 官图（Vision 原生抠图 + 展台辉光）/ 相册导入 / 纯渐变。
+
+            ### � 防多端登录 & 抓包链路
+            - 统一设备指纹（User-Guid / app_ver / User-Agent），回放与真机同源，服务器不再误判多端踢 Token；
+            - Shadowrocket / Mac sniff.sh / 剪贴板三链路直推自动回填；凭证接收去重，重复推送不再反复震动。
+
+            ### 🛠 修复
+            - 特殊模式识别键名对齐真实 RVS 字段、外设卡语义化解析、位置卡叠印、输入框溢出、空响应保护等。
+
+            ### 📱 安装说明
+            - 下载下方附件 `YumikoToysRR-unsigned.ipa`；
+            - 使用 TrollStore（巨魔商店）、Sideloadly、AltStore 或自签名证书安装即可直接使用；
+            - 内置灵动岛与锁屏实时活动组件 (`WheaterStatusExtension.appex`)。
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

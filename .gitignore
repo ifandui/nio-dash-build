@@ -1,0 +1,41 @@
+# Xcode
+## User settings
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+## Build products
+build/
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Scratch & Sniff Scripts
+auto_sniff.py
+sniff.sh
+__pycache__/
+*.pyc
+*.bak
+
+# Reference projects (third-party, local only)
+ha-nio/
+NIO-Dash/
+
+# Local private secrets (NEVER commit)
+wheater/NIO_Secrets.plist
