@@ -1,0 +1,8 @@
+name: S
+on:
+  workflow_dispatch:
+jobs:
+  s:
+    runs-on: macos-15
+    steps:
+      - run: echo ok && sw_vers
