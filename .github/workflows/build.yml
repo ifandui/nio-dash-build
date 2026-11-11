@@ -60,9 +60,9 @@ jobs:
           # 若使用 TrollStore（可绕过签名校验），可保留 ldid 注入以启用 Widget 共享。
           # 用 ad-hoc 签名（不含任何自定义权限）保证包结构合法；
           # 侧载工具安装时会用自己的证书和描述文件重签。
-          codesign --force --deep -s - Payload/YumikoToysRR.app
+          codesign --force --deep --sign - build/Payload/YumikoToysRR.app
           echo "--- 校验：权限应为空 ---"
-          codesign -d --entitlements :- Payload/YumikoToysRR.app/YumikoToysRR 2>&1 | head -5 || true
+          codesign -d --entitlements :- build/Payload/YumikoToysRR.app/YumikoToysRR 2>&1 | head -5 || true
           cd build && zip -qry YumikoToysRR-unsigned.ipa Payload
           ls -lh YumikoToysRR-unsigned.ipa
           echo "--- 校验：二进制内不应残留 app-group 权限 ---"
