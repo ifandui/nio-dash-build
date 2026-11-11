@@ -1,7 +1,7 @@
 #!name=🐰 YumikoToys NIO-Dash 凭证直推
-#!desc=自动拦截蔚来 App 请求 v3：提取 Token / 用户级Token（主 App 会话）/ VehicleID / User-Guid / app_ver 指纹直推 YumikoToys App（127.0.0.1:8997）；在官方 App 点车控按钮时自动捕获指令原文（端点+body）供逆向对照。同凭证重复推送会被 App 静默忽略。
+#!desc=自动拦截蔚来 App 请求 v3.2：提取 Token / 用户级Token / VehicleID / User-Guid / app_ver 直推 YumikoToys App（127.0.0.1:8997）；点车控按钮捕获指令原文；进入充电地图捕获 /app/api/pe/ 请求原文（含真实 sign，供签名算法破解）。同凭证重复推送会被 App 静默忽略。
 #!author=YumikoToys
-#!version=v3.1.0 (2026-11-02 扫码授权链路捕获版)
+#!version=v3.2.0 (2026-11-08 充电地图签名样本捕获版)
 #!date=2026-11-02 20:00:00
 #!homepage=https://github.com/kissggj123/NIO-Dash-iOS
 #!icon=https://raw.githubusercontent.com/kissggj123/NIO-Dash-iOS/main/wheater/Assets.xcassets/AppIcon.appiconset/icon_60%402x.png

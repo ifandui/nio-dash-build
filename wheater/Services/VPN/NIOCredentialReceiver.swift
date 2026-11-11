@@ -259,6 +259,8 @@ final class NIOCredentialReceiver: ObservableObject {
         let commandSamples = json["command_samples"] as? [[String: Any]] ?? []
         // 车机扫码授权链路样本（poseidon：工程模式/扫码授权的服务端权限判定原文，含响应）
         let poseidonSamples = json["poseidon_samples"] as? [[String: Any]] ?? []
+        // 充电站/换电站地图 API 样本（app.nio.com /app/api/pe/ 前缀，独立签名体系，含真实 sign）
+        let peSamples = json["pe_samples"] as? [[String: Any]] ?? []
 
         // 收件箱存档（重启可查；无论凭证是否去重都更新，保证样本区始终最新）
         persistInbox(json)
@@ -270,7 +272,7 @@ final class NIOCredentialReceiver: ObservableObject {
                 sign: sign, timestamp: timestamp,
                 userGuid: userGuid, appVer: appVer, userAgent: userAgent,
                 userToken: userToken, commandSamples: commandSamples,
-                poseidonSamples: poseidonSamples
+                poseidonSamples: poseidonSamples, peSamples: peSamples
             )
         }
     }
@@ -298,6 +300,7 @@ final class NIOCredentialReceiver: ObservableObject {
         let userToken  = Self.clean(json["user_token"]    as? String ?? "")
         let commandSamples  = json["command_samples"]  as? [[String: Any]] ?? []
         let poseidonSamples = json["poseidon_samples"] as? [[String: Any]] ?? []
+        let peSamples       = json["pe_samples"]       as? [[String: Any]] ?? []
         // 全量导出（export_version 2）附加字段：换电/签到 API 与 Token、签名密钥（可选）
         let changeURL    = Self.clean(json["change_url"]    as? String ?? "")
         let changeToken  = Self.clean(json["change_token"]  as? String ?? "")
@@ -323,7 +326,7 @@ final class NIOCredentialReceiver: ObservableObject {
                 sign: sign, timestamp: timestamp,
                 userGuid: userGuid, appVer: appVer, userAgent: userAgent,
                 userToken: userToken, commandSamples: commandSamples,
-                poseidonSamples: poseidonSamples
+                poseidonSamples: poseidonSamples, peSamples: peSamples
             )
         }
         return true
@@ -337,7 +340,8 @@ final class NIOCredentialReceiver: ObservableObject {
                                   sign: String, timestamp: String = "",
                                   userGuid: String = "", appVer: String = "", userAgent: String = "",
                                   userToken: String = "", commandSamples: [[String: Any]] = [],
-                                  poseidonSamples: [[String: Any]] = []) {
+                                  poseidonSamples: [[String: Any]] = [],
+                                  peSamples: [[String: Any]] = []) {
         let service = NIOService.shared
         var applied: [String] = []
         // 设备标识：device_id 优先，User-Guid 兜底（网关请求无 query device_id）
@@ -350,7 +354,8 @@ final class NIOCredentialReceiver: ObservableObject {
         // 服务端仍返回 403 则保持红色警示，已恢复则横幅自动复位。
         let samplesDigest = commandSamples.prefix(5).map { "\($0["url"] ?? "")|\($0["body"] ?? "")" }.joined(separator: ";")
         let poseidonDigest = poseidonSamples.prefix(5).map { "\($0["url"] ?? "")|\($0["status"] ?? "")|\(($0["resp_body"] as? String ?? "").prefix(120))" }.joined(separator: ";")
-        let fingerprint = "\(token)|\(vehicleId)|\(effectiveDeviceId)|\(userToken)|\(samplesDigest)|\(poseidonDigest)"
+        let peDigest = peSamples.prefix(8).map { "\($0["fingerprint"] ?? $0["url"] ?? "")" }.joined(separator: ";")
+        let fingerprint = "\(token)|\(vehicleId)|\(effectiveDeviceId)|\(userToken)|\(samplesDigest)|\(poseidonDigest)|\(peDigest)"
         if fingerprint == lastAppliedFingerprint {
             lastReceivedAt = Date()
             if service.is403Detected {
@@ -407,6 +412,24 @@ final class NIOCredentialReceiver: ObservableObject {
             ))
         }
         if !poseidonSamples.isEmpty { applied.append("扫码链路×\(poseidonSamples.count)") }
+        // 充电站/换电站地图 API 样本 → 诊断日志（app.nio.com 独立签名体系：含真实 sign 的完整请求原文，
+        // 供离线对照破解网关签名算法后实现充电地图移植）
+        for sample in peSamples.prefix(8) {
+            let url = (sample["url"] as? String) ?? ""
+            let method = (sample["method"] as? String) ?? "POST"
+            let body = (sample["body"] as? String) ?? ""
+            let auth = (sample["auth"] as? String) ?? ""
+            let time = (sample["time"] as? String) ?? ""
+            let pathTail = URL(string: url)?.pathComponents.suffix(3).joined(separator: "/") ?? url
+            service.appendLog(NIOFetchLogEntry(
+                category: "pe_capture", level: "info",
+                message: "🗺️ 充电地图样本·\(pathTail) \(time)",
+                detail: "\(method) \(url)\nbody=\(body)\nauth=\(auth)",
+                timestamp: Date(), requestURL: url, requestMethod: method,
+                requestBody: body, responsePreview: nil, statusCode: nil
+            ))
+        }
+        if !peSamples.isEmpty { applied.append("充电地图×\(peSamples.count)") }
         if !vehicleId.isEmpty { service.nioVehicleId         = vehicleId; applied.append("VehicleID") }
         if !effectiveDeviceId.isEmpty { service.nioDeviceId = effectiveDeviceId; applied.append("DeviceID") }
         if !sign.isEmpty      { service.nioVehicleApiSign    = sign }

@@ -29,13 +29,11 @@ jobs:
           for v in 26.3 26.2 26.1.1 26.1 26.0.1 26.0; do
             if [ -d "/Applications/Xcode_$v.app" ]; then XC="/Applications/Xcode_$v.app"; break; fi
           done
-          if [ -z "$XC" ]; then
-            echo "❌ 镜像里没有 Xcode 26"; ls /Applications | grep -i xcode || true; exit 1
-          fi
+          if [ -z "$XC" ]; then echo "❌ 镜像里没有 Xcode 26"; ls /Applications | grep -i xcode || true; exit 1; fi
           echo "使用 $XC"
           sudo xcode-select -s "$XC"
           xcodebuild -version
-          xcodebuild -showsdks | grep -i "iphoneos" || true
+          xcodebuild -showsdks | grep -i iphoneos || true
 
       - name: Build & Archive iOS App
         run: |
@@ -50,19 +48,20 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             archive
 
-      - name: Package Unsigned IPA (with Live Activity Appex)
+      - name: Package Unsigned IPA (no custom entitlements)
         run: |
           mkdir -p build/Payload
           cp -r build/YumikoToysRR.xcarchive/Products/Applications/YumikoToysRR.app build/Payload/
-          # 为 TrollStore 安装嵌入权限（ldid 重签名，CoreTrust 旁路下任意权限有效）
-          brew install ldid
-          # 主 App：CarPlay + App Group（桌面 Widget 快照共享）
-          ldid -Swheater/wheater.entitlements build/Payload/YumikoToysRR.app/YumikoToysRR
-          # Widget 扩展：App Group（读取车况快照）
-          APPEX_BIN="build/Payload/YumikoToysRR.app/PlugIns/WheaterStatusExtension.appex/WheaterStatusExtension"
-          if [ -f "$APPEX_BIN" ]; then ldid -SWheaterStatus/Extension.entitlements "$APPEX_BIN"; fi
+          # 不注入任何自定义权限（App Group / CarPlay）。
+          # 原因：免费 Apple ID 的描述文件不包含这些能力，注入后安装虽成功，
+          # 但启动瞬间会被系统（AMFI）杀掉 —— 表现为「点开就闪退」。
+          # 侧载工具（iloader / SideStore / Sideloadly）安装时会用自己的证书重签，
+          # 并把权限改写为描述文件允许的集合。
+          # 若使用 TrollStore（可绕过签名校验），可保留 ldid 注入以启用 Widget 共享。
           cd build && zip -qry YumikoToysRR-unsigned.ipa Payload
           ls -lh YumikoToysRR-unsigned.ipa
+          echo "--- 校验：二进制内不应残留 app-group 权限 ---"
+          codesign -d --entitlements :- Payload/YumikoToysRR.app/YumikoToysRR 2>&1 | head -5 || true
 
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4

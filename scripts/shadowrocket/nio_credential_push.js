@@ -60,6 +60,31 @@ const DEFAULT_CHECKIN_URL = "https://gateway-front-external.nio.com/moat/10086/n
         $persistentStore.write(JSON.stringify(commandSamples), "nio_command_samples");
     }
 
+    // ── v3.2：充电站/换电站地图 API 捕获（app.nio.com /app/api/pe/ 前缀，独立签名体系）──
+    // 目标：拿到含真实 sign 的完整请求原文（URL+body+Authorization），供 App 侧离线破解网关签名算法
+    const isPEMapReq = url.includes("/app/api/pe/");
+    let peSamples = [];
+    try { peSamples = JSON.parse($persistentStore.read("nio_pe_samples") || "[]"); } catch (_) {}
+    if (isPEMapReq) {
+        // 去重指纹：path + query 去掉 timestamp/sign（同页面反复滑动会重发同参请求）
+        const dedupPath = (url.split("?")[0] || "") + "|" +
+            (url.split("?")[1] || "").split("&")
+                .filter(function(kv) { return kv && !/^timestamp=/.test(kv) && !/^sign=/.test(kv); })
+                .sort().join("&");
+        const dupIdx = peSamples.findIndex(function(s) { return s.fingerprint === dedupPath; });
+        if (dupIdx >= 0) peSamples.splice(dupIdx, 1);
+        const peSample = {
+            time:        new Date().toLocaleTimeString("zh-CN", { hour12: false }),
+            method:      ($request.method || "POST").toUpperCase(),
+            url:         url,
+            body:        typeof $request.body === "string" ? $request.body : ($request.body ? JSON.stringify($request.body) : ""),
+            auth:        headers["Authorization"] || headers["authorization"] || "",
+            fingerprint: dedupPath
+        };
+        peSamples = [peSample].concat(peSamples).slice(0, 8);
+        $persistentStore.write(JSON.stringify(peSamples), "nio_pe_samples");
+    }
+
     // ── 无有效凭证则跳过 ──
     if (!token && !qp.vehicle_id) { $done({}); return; }
 
@@ -113,6 +138,7 @@ const DEFAULT_CHECKIN_URL = "https://gateway-front-external.nio.com/moat/10086/n
         user_agent:    store.user_agent    || userAgent || "",
         user_token:    store.user_token    || "",
         command_samples: commandSamples,
+        pe_samples:    peSamples,
         source:        "shadowrocket_module"
     });
 
@@ -129,6 +155,8 @@ const DEFAULT_CHECKIN_URL = "https://gateway-front-external.nio.com/moat/10086/n
             if (isCommandReq) {
                 const m = (commandSamples[0] && commandSamples[0].body || "").match(/"function"\s*:\s*"([^"]+)"/);
                 $notification.post("🎯 已捕获官方车控原文" + (m ? "·" + m[1] : ""), "已直推 App 诊断（command_capture）", "");
+            } else if (isPEMapReq) {
+                $notification.post("🗺️ 已捕获充电地图请求原文", "已直推 App 诊断（pe_capture）", "");
             } else {
                 const title = isRvs ? "🎉 蔚来完整遥测 (胎压/FOTA) 已捕获！" : "🔑 Token 已捕获";
                 const body  = isRvs ? "含 4 轮胎压与车机固件，App 自动回填中" : "请在蔚来 App 爱车页下拉刷新获取全量胎压与 FOTA";
